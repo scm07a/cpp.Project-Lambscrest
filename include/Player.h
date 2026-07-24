@@ -1,19 +1,44 @@
 #pragma once
 #include <SDL2/SDL.h>
+
+enum class PlayerState{
+    IdleNorth,
+    IdleSouth,
+    WalkNorth,
+    WalkSouth,
+    WalkEast,
+    WalkWest,
+    IdleWest,
+    IdleEast
+};
+
+enum class Direction{
+    North,
+    South,
+    West,
+    East
+};
+
+struct Animation{
+    int rows,frames;
+};
+
 class Player
 {
 private:
+    Direction dir= Direction::South;
+    PlayerState state = PlayerState::IdleNorth;
+    Animation anim;
     float moveX = 0.f;
     float moveY = 0.f;
+    float speed = 300.f;
     float x;
     float y;
-    float speed = 300.f;
-    int health = 100;
-    bool isAlive = true;
+    // int health = 100;
+    // bool isAlive = true;
     SDL_Rect dstrect;
     SDL_Rect srcrect;
-    int currentRow;
-    int currentColumn;
+    int currentframe;
     double animtimer;
 public:
     Player();
@@ -21,5 +46,4 @@ public:
     void update(double dt);
     void render(SDL_Renderer* renderer,
                 SDL_Texture* texture);
-    void updateanim(double dt);
 };

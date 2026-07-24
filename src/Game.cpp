@@ -48,12 +48,12 @@ Game::~Game(){
 }
 double Game::calcSpeed(Uint64& lastTick){
     Uint64 currentTick = SDL_GetPerformanceCounter();
-    double deltaTime = static_cast<double>
+    double _deltaTime = static_cast<double>
                         (currentTick-lastTick)/
                         static_cast<double>(
                         SDL_GetPerformanceFrequency());
     lastTick=currentTick;
-    return deltaTime;
+    return _deltaTime;
 }
 
 bool Game::eventhandler(){
@@ -66,10 +66,8 @@ bool Game::eventhandler(){
 void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
-        
     player.handleInput(keyboardState);
     player.update(dt);
-    player.updateanim(dt);
 }
 
 void Game::render(TextureManager& tm){
@@ -85,9 +83,9 @@ bool Game::run(){
     Uint64 lastTick = SDL_GetPerformanceCounter();
 
     while(isRunning){
-        double deltaTime= calcSpeed(lastTick);
+        double _deltaTime= calcSpeed(lastTick);
         if(!eventhandler()) isRunning=false;
-        processInput(deltaTime);
+        processInput(_deltaTime);
         render(tm);
     }
     return true;

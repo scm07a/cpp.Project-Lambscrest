@@ -9,5 +9,4 @@ class World{
     public:
         World();
         void render(SDL_Renderer* renderer, SDL_Texture* texture);
-
 };

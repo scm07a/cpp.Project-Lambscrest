@@ -15,4 +15,3 @@ class TextureManager{
                         const std::string& path);
         SDL_Texture* getTexture(const std::string& key);
 };
-
