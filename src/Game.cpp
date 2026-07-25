@@ -61,7 +61,7 @@ bool Game::eventhandler(){
     while (SDL_PollEvent(&event))
         if(event.type==SDL_QUIT) return false;
     return true;
-}
+}   
 
 void Game::processInput(double dt){
     const Uint8* keyboardState = 
@@ -74,12 +74,13 @@ void Game::render(TextureManager& tm){
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     player.render(renderer,tm.getTexture("player"));
+    world.render(renderer,tm.getTexture("background"));
     SDL_RenderPresent(renderer);
 }
 
 bool Game::run(){
     tm.loadTexture(renderer,"player","assets/textures/characters/player.png");
-    // tm.loadTexture(renderer,"background","assets/textures/backgrounds/origbig.png");
+    tm.loadTexture(renderer,"background","assets/textures/tilesets/grass.png");
     Uint64 lastTick = SDL_GetPerformanceCounter();
 
     while(isRunning){

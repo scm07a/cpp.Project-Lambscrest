@@ -3,13 +3,13 @@
 #include <stdexcept>
 #include "Game.h"
 
-int main(){
+auto main()->int{
     try{
         Game game;
         return game.run() ? 0:1;
     }
     catch(const std::exception& e){
         std::cerr<<e.what()<<std::endl;
-        return 1;
+        return 2;
     }
 }

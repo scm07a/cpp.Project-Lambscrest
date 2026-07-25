@@ -2,15 +2,20 @@
 #include <SDL2/SDL_image.h>
 #include "World.h"
 
-World::World(){
-    wall.x=200;
-    wall.y=200;
-    wall.w=200;
-    wall.h=150;
+World::World():pos_x(100.f),pos_y(100){
+    wall.x=static_cast<int>(pos_x);
+    wall.y=static_cast<int>(pos_y);
+    wall.w = _TILEWIDTH;
+    wall.h = _TILEHEIGHT;
 }
 
 void World::render(SDL_Renderer* renderer,
                     SDL_Texture* texture)
 {
-    SDL_RenderCopy(renderer,texture,nullptr,nullptr);
+    for (size_t i=0;i<15;i++){
+        for (size_t j=0; j<26;j++){
+            SDL_RenderCopy(renderer,texture,
+                            nullptr,&wall);
+        }
+    }
 }
