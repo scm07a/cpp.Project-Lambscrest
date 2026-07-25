@@ -2,13 +2,12 @@
 #include <SDL2/SDL.h>
 #include "TextureManager.h"
 
-constexpr int _TILEWIDTH=48;
-constexpr int _TILEHEIGHT=48;
+constexpr int _TILEWIDTH=50;
+constexpr int _TILEHEIGHT=50;
+
 class World{
     private:
-        SDL_Rect wall;
-        int pos_x;
-        float pos_y;
+        SDL_Rect tile;
 
     public:
         World();

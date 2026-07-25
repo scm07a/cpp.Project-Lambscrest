@@ -73,8 +73,8 @@ void Game::processInput(double dt){
 void Game::render(TextureManager& tm){
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
-    player.render(renderer,tm.getTexture("player"));
     world.render(renderer,tm.getTexture("background"));
+    player.render(renderer,tm.getTexture("player"));
     SDL_RenderPresent(renderer);
 }
 

@@ -30,21 +30,21 @@ void Player::handleInput(const Uint8* keyboardState){
         moving=true;
     }
 
-    if(keyboardState[SDL_SCANCODE_A]){
+    else if(keyboardState[SDL_SCANCODE_A]){
         moveX=-1.f;
         state=PlayerState::WalkWest;
         dir=Direction::West;
         moving=true;
     }
 
-    if(keyboardState[SDL_SCANCODE_S]){
+    else if(keyboardState[SDL_SCANCODE_S]){
         moveY=1.f;
         state=PlayerState::WalkSouth;
         dir=Direction::South;
         moving=true;
     }
 
-    if(keyboardState[SDL_SCANCODE_D]){
+    else if(keyboardState[SDL_SCANCODE_D]){
         moveX=1.f;
         state=PlayerState::WalkEast;
         dir=Direction::East;
@@ -126,8 +126,9 @@ void Player::update(double dt){
 void Player::render(SDL_Renderer* renderer,
                     SDL_Texture* texture){
     SDL_RendererFlip flip = SDL_FLIP_NONE;
-    if (dir==Direction::West)
+    if (dir==Direction::West){
         flip=SDL_FLIP_HORIZONTAL;
+    }
     SDL_RenderCopyEx(renderer,texture,&srcrect,&dstrect
                     ,0.0,nullptr,flip);
 }
