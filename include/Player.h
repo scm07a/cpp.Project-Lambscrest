@@ -1,7 +1,9 @@
 #pragma once
 #include <SDL2/SDL.h>
+
 constexpr int _FRAMESIZE = 48;
 constexpr double _FRAMETIME = 0.2;
+
 enum class PlayerState{
     IdleNorth,
     IdleSouth,

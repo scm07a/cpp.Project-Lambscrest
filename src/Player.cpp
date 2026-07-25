@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <SDL2/SDL.h>
 #include <stdexcept>
-#include <iostream>
+#include <string>
 
 Player::Player(): x(100.f),y(100.f),
                 currentframe(0),animtimer(0.0)
@@ -113,7 +113,12 @@ void Player::update(double dt){
                     break;
                 
                 default:
-                    std::cout<<"Err!\n";
+                    throw std::runtime_error(
+                        std::string(
+                            "Error Animating {Player} Sprite!\n"
+                        ) 
+                        + SDL_GetError()+'\n'
+                    );
                     break;
             }
         currentframe=(currentframe+1)%anim.frames;
