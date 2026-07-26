@@ -114,12 +114,8 @@ void Player::update(double dt){
                     break;
                 
                 default:
-                    throw std::runtime_error(
-                        std::string(
-                            "Error Animating {Player} Sprite!\n"
-                        ) 
-                        + SDL_GetError()+'\n'
-                    );
+                    throw std::runtime_error
+                    ("Unknown Player State Inside Player::update()");
                     break;
             }
         currentframe=(currentframe+1)%anim.frames;
