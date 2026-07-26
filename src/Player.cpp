@@ -30,21 +30,22 @@ void Player::handleInput(const Uint8* keyboardState){
         moving=true;
     }
 
-    else if(keyboardState[SDL_SCANCODE_A]){
-        moveX=-1.f;
-        state=PlayerState::WalkWest;
-        dir=Direction::West;
-        moving=true;
-    }
-
-    else if(keyboardState[SDL_SCANCODE_S]){
+    if(keyboardState[SDL_SCANCODE_S]){
         moveY=1.f;
         state=PlayerState::WalkSouth;
         dir=Direction::South;
         moving=true;
     }
 
-    else if(keyboardState[SDL_SCANCODE_D]){
+    if(keyboardState[SDL_SCANCODE_A]){
+        moveX=-1.f;
+        state=PlayerState::WalkWest;
+        dir=Direction::West;
+        moving=true;
+    }
+
+
+    if(keyboardState[SDL_SCANCODE_D]){
         moveX=1.f;
         state=PlayerState::WalkEast;
         dir=Direction::East;
