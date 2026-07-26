@@ -34,7 +34,7 @@ private:
     Animation anim;
     float moveX = 0.f;
     float moveY = 0.f;
-    float speed = 300.f;
+    float speed = 150.f;
     float x;
     float y;
     // int health = 100;

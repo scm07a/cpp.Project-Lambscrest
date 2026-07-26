@@ -8,8 +8,8 @@ Player::Player(): x(100.f),y(100.f),
 {
     anim.rows=0;
     anim.frames=6;
-    dstrect.w=200;
-    dstrect.h=150;
+    dstrect.w=150;
+    dstrect.h=90;
     dstrect.x=static_cast<int>(x);
     dstrect.y=static_cast<int>(y);
     srcrect.w=48;
@@ -21,23 +21,28 @@ Player::Player(): x(100.f),y(100.f),
 void Player::handleInput(const Uint8* keyboardState){
     moveX=0.f;
     moveY=0.f;
+    const Uint8 wKey = keyboardState[SDL_SCANCODE_W];
+    const Uint8 sKey = keyboardState[SDL_SCANCODE_S];
+    const Uint8 aKey = keyboardState[SDL_SCANCODE_A];
+    const Uint8 dKey = keyboardState[SDL_SCANCODE_D];
+    const Uint8 shiftKey = keyboardState[SDL_SCANCODE_LSHIFT];
     bool moving = false;
 
-    if(keyboardState[SDL_SCANCODE_W]){
+    if(wKey){
         moveY=-1.f;
         state=PlayerState::WalkNorth;
         dir=Direction::North;
         moving=true;
     }
 
-    if(keyboardState[SDL_SCANCODE_S]){
+    if(sKey){
         moveY=1.f;
         state=PlayerState::WalkSouth;
         dir=Direction::South;
         moving=true;
     }
 
-    if(keyboardState[SDL_SCANCODE_A]){
+    if(aKey){
         moveX=-1.f;
         state=PlayerState::WalkWest;
         dir=Direction::West;
@@ -45,12 +50,15 @@ void Player::handleInput(const Uint8* keyboardState){
     }
 
 
-    if(keyboardState[SDL_SCANCODE_D]){
+    if(dKey){
         moveX=1.f;
         state=PlayerState::WalkEast;
         dir=Direction::East;
         moving=true;
     }
+
+    if(shiftKey) speed=200.f;
+    else if (!shiftKey) speed = 150.f;
 
     if (!moving && dir==Direction::North)
         state=PlayerState::IdleSouth;
