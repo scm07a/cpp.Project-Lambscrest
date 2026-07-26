@@ -1,12 +1,12 @@
 # Project Lambscrest
 
-> A top-down 2D pixel-art action adventure built from scratch in modern C++ using SDL2.
+> A top-down 2D pixel-art action-adventure game built from scratch in modern C++ using SDL2.
 
 ## About
 
-Project Lambscrest is a long-term game development project focused on building a complete game while deepening my understanding of modern C++, software engineering, and game programming.
+Project Lambscrest is a long-term game development project focused on building a complete game while strengthening my understanding of modern C++, software engineering, game architecture, and real-time rendering.
 
-Instead of relying on an existing game engine, this project uses SDL2 to implement core game systems from the ground up. The goal is to continuously improve the project over time while applying clean architecture and best development practices.
+Rather than relying on an existing game engine, this project uses **SDL2** to build core game systems from the ground up. Every major system—from rendering and animation to resource management and world generation—is implemented incrementally as both a learning experience and the foundation for the final game.
 
 ---
 
@@ -15,18 +15,25 @@ Instead of relying on an existing game engine, this project uses SDL2 to impleme
 - SDL2 window creation
 - Hardware-accelerated rendering
 - Frame-independent movement using Delta Time
-- Object-oriented `Player` class
-- Separated input, update, and rendering logic
+- Object-oriented game architecture
+- Separate input, update, and rendering systems
+- Texture management system
+- Animated player sprite system
+- Directional idle and walking animations
+- Animation state machine using `enum class`
+- Sprite flipping for left-facing animations
+- Tile-based world rendering
 - CMake + Ninja build system
 
 ---
 
 ## Planned Features
 
-- Player sprites and animations
-- Camera system
-- Tile-based world
 - Collision detection
+- Camera system
+- JSON-based asset loading
+- Tile map loading
+- World generation
 - Inventory system
 - Combat mechanics
 - Enemy AI
@@ -42,6 +49,9 @@ Instead of relying on an existing game engine, this project uses SDL2 to impleme
 |-----------|------------|
 | Language | C++23 |
 | Graphics | SDL2 |
+| Image Loading | SDL2_image |
+| Audio | SDL2_mixer |
+| Fonts | SDL2_ttf |
 | Build System | CMake + Ninja |
 | Compiler | GCC (MSYS2 UCRT64) |
 | IDE | Visual Studio Code |
@@ -61,11 +71,17 @@ Project-Lambscrest/
 ├── build/
 │
 ├── include/
-│   └── Player.h
+│   ├── Game.h
+│   ├── Player.h
+│   ├── TextureManager.h
+│   └── World.h
 │
 ├── src/
 │   ├── main.cpp
-│   └── Player.cpp
+│   ├── Game.cpp
+│   ├── Player.cpp
+│   ├── TextureManager.cpp
+│   └── World.cpp
 │
 ├── .gitignore
 ├── CMakeLists.txt
@@ -102,13 +118,13 @@ cmake --build build
 
 ### Run
 
-Execute the generated executable from the `build` directory.
+Run the generated executable from the `build` directory.
 
 ---
 
 ## Learning Goals
 
-This project serves as a practical way to improve my understanding of:
+Project Lambscrest serves as a practical way to improve my understanding of:
 
 - Modern C++
 - Object-Oriented Programming
@@ -117,7 +133,11 @@ This project serves as a practical way to improve my understanding of:
 - Real-time Rendering
 - Delta Time
 - Resource Management
+- Animation Systems
+- State Machines
+- Tile-Based Rendering
 - Software Engineering Principles
+- Clean Code Practices
 - Game Development Best Practices
 
 ---
@@ -126,30 +146,41 @@ This project serves as a practical way to improve my understanding of:
 
 - [x] SDL2 initialization
 - [x] Window creation
-- [x] Hardware renderer
+- [x] Hardware-accelerated renderer
 - [x] Delta time implementation
-- [x] Player class
+- [x] Game loop
+- [x] Player movement
 - [x] Input handling
-- [x] Texture loading
+- [x] Texture manager
 - [x] Sprite rendering
-- [ ] Animation system
-- [ ] Camera
-- [ ] Tile map
-- [ ] Collision
-- [ ] Inventory
-- [ ] Combat
+- [x] Animation system
+- [x] Directional player animations
+- [x] Tile-based world rendering
+- [ ] Collision detection
+- [ ] Camera system
+- [ ] JSON asset loading
+- [ ] Tile map loading
+- [ ] World generation
+- [ ] Inventory system
+- [ ] Combat mechanics
 - [ ] Enemy AI
-- [ ] NPCs
-- [ ] Audio
-- [ ] Saving & Loading
+- [ ] NPC interactions
+- [ ] Audio system
+- [ ] Save & Load functionality
+
+---
+
+## Screenshots
+
+> Screenshots and gameplay GIFs will be added as development progresses.
 
 ---
 
 ## Project Status
 
-🚧 **Early Development**
+🚧 **Active Development**
 
-Project Lambscrest is currently in the early stages of development. New systems and features will be added incrementally as the project evolves.
+Project Lambscrest is under active development. New systems are added incrementally, with an emphasis on writing clean, maintainable code while learning the fundamentals of engine and game development.
 
 ---
 
