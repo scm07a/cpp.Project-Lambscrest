@@ -87,7 +87,14 @@ bool Game::run(){
         double _deltaTime= calcSpeed(lastTick);
         if(!eventhandler()) isRunning=false;
         processInput(_deltaTime);
+        // handleCollision();
         render(tm);
     }
     return true;
+}
+
+void Game::handleCollision(){
+    if (world.checkCollison(player.getdstRect())){
+        
+    }
 }

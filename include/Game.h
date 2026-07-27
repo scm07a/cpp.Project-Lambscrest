@@ -20,4 +20,5 @@ class Game{
         void processInput(double dt);
         void render(TextureManager& tm);
         bool run();
+        void handleCollision();
 };

@@ -142,3 +142,6 @@ void Player::render(SDL_Renderer* renderer,
     SDL_RenderCopyEx(renderer,texture,&srcrect,&dstrect
                     ,0.0,nullptr,flip);
 }
+const SDL_Rect& Player::getdstRect()const{
+    return dstrect;
+}

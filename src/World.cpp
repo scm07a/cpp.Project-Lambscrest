@@ -1,12 +1,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "World.h"
+#include "Player.h"
 
 World::World(){
     tile.x=0;
     tile.y=0;
     tile.w = _TILEWIDTH;
     tile.h = _TILEHEIGHT;
+    wall.x=100;
+    wall.y=100;
+    wall.w=250;
+    wall.h=100;
 }
 
 void World::render(SDL_Renderer* renderer,
@@ -20,4 +25,8 @@ void World::render(SDL_Renderer* renderer,
                             nullptr,&tile);
         }
     }
+}
+
+bool World::checkCollison(const SDL_Rect& rect) const{
+    return SDL_HasIntersection(&wall,&rect);
 }
