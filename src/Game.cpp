@@ -67,7 +67,7 @@ void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
     player.handleInput(keyboardState);
-    player.update(dt);
+    player.update(dt,world);
 }
 
 void Game::render(TextureManager& tm){
@@ -75,6 +75,9 @@ void Game::render(TextureManager& tm){
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     world.render(renderer,tm.getTexture("background"));
     player.render(renderer,tm.getTexture("player"));
+    SDL_SetRenderDrawColor(renderer,255,255,255,255);
+    SDL_RenderDrawRect(renderer,&world.getWall());
+    SDL_FillRect(nullptr,&world.getWall(),255);
     SDL_RenderPresent(renderer);
 }
 
@@ -87,7 +90,6 @@ bool Game::run(){
         double _deltaTime= calcSpeed(lastTick);
         if(!eventhandler()) isRunning=false;
         processInput(_deltaTime);
-        // handleCollision();
         render(tm);
     }
     return true;

@@ -14,4 +14,5 @@ class World{
         World();
         void render(SDL_Renderer* renderer, SDL_Texture* texture);
         bool checkCollison(const SDL_Rect& rect) const;
+        const SDL_Rect& getWall() const;
 };

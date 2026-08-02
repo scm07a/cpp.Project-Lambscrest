@@ -8,8 +8,8 @@ Player::Player(): x(100.f),y(100.f),
 {
     anim.rows=0;
     anim.frames=6;
-    dstrect.w=150;
-    dstrect.h=90;
+    dstrect.w=playerWidth;
+    dstrect.h=playerHeight;
     dstrect.x=static_cast<int>(x);
     dstrect.y=static_cast<int>(y);
     srcrect.w=48;
@@ -73,11 +73,19 @@ void Player::handleInput(const Uint8* keyboardState){
         state=PlayerState::IdleWest;
     
 }
-void Player::update(double dt){
-    x+=moveX*speed*dt;
-    y+=moveY*speed*dt;
-    dstrect.x=static_cast<int>(x);
-    dstrect.y=static_cast<int>(y);
+void Player::update(double dt, World& world){
+    float nextX=x+moveX*speed*dt;
+    float nextY=y+moveY*speed*dt;
+    SDL_Rect nextRect=dstrect;
+    nextRect.x=static_cast<int>(nextX);
+    nextRect.y=static_cast<int>(nextY);
+    if(!world.checkCollison(nextRect)){
+        x=nextX;
+        y=nextY;
+
+        dstrect.x=static_cast<int>(x);
+        dstrect.y=static_cast<int>(y);
+    }
     animtimer+=dt;
     if(animtimer>_FRAMETIME){
             switch(state){

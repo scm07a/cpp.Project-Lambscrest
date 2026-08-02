@@ -8,10 +8,10 @@ World::World(){
     tile.y=0;
     tile.w = _TILEWIDTH;
     tile.h = _TILEHEIGHT;
-    wall.x=100;
-    wall.y=100;
+    wall.x=200;
+    wall.y=200;
     wall.w=250;
-    wall.h=100;
+    wall.h=250;
 }
 
 void World::render(SDL_Renderer* renderer,
@@ -29,4 +29,7 @@ void World::render(SDL_Renderer* renderer,
 
 bool World::checkCollison(const SDL_Rect& rect) const{
     return SDL_HasIntersection(&wall,&rect);
+}
+const SDL_Rect& World::getWall() const{
+    return wall;
 }

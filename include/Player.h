@@ -1,8 +1,11 @@
 #pragma once
 #include <SDL2/SDL.h>
+#include "World.h"
 
 constexpr int _FRAMESIZE = 48;
 constexpr double _FRAMETIME = 0.2;
+constexpr int playerWidth=150;
+constexpr int playerHeight=90;
 
 enum class PlayerState{
     IdleNorth,
@@ -42,10 +45,11 @@ class Player{
         SDL_Rect srcrect;
         int currentframe;
         double animtimer;
+        
     public:
         Player();
         void handleInput(const Uint8* keyboardState);
-        void update(double dt);
+        void update(double dt,World& world);
         void render(SDL_Renderer* renderer,
                     SDL_Texture* texture);
         const SDL_Rect& getdstRect() const;
