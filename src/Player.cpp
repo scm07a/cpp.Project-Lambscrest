@@ -16,7 +16,7 @@ Player::Player(): x(100.f),y(100.f),
     srcrect.h=48;
     srcrect.x= currentframe * _FRAMESIZE;
     srcrect.y= anim.rows * _FRAMESIZE;
-}   
+}
 
 void Player::handleInput(const Uint8* keyboardState){
     moveX=0.f;
@@ -61,13 +61,13 @@ void Player::handleInput(const Uint8* keyboardState){
     else if (!shiftKey) speed = 150.f;
 
     if (!moving && dir==Direction::North)
-        state=PlayerState::IdleSouth;
+        state=PlayerState::IdleNorth;
 
     if (!moving && dir==::Direction::East)
         state=PlayerState::IdleEast;
 
     if (!moving && dir==Direction::South)
-        state=PlayerState::IdleNorth;
+        state=PlayerState::IdleSouth;
 
     if (!moving && dir==Direction::West)
         state=PlayerState::IdleWest;
@@ -91,7 +91,7 @@ void Player::update(double dt, World& world){
             switch(state){
                 case PlayerState::IdleNorth:
                     anim.frames=6;
-                    anim.rows=0;
+                    anim.rows=2;
                     break;
 
                 case PlayerState::WalkNorth:
@@ -121,7 +121,7 @@ void Player::update(double dt, World& world){
                 
                 case PlayerState::IdleSouth:
                     anim.frames=6;
-                    anim.rows=2;
+                    anim.rows=0;
                     break;
 
                 case PlayerState::WalkSouth:
@@ -144,9 +144,10 @@ void Player::update(double dt, World& world){
 void Player::render(SDL_Renderer* renderer,
                     SDL_Texture* texture){
     SDL_RendererFlip flip = SDL_FLIP_NONE;
-    if (dir==Direction::West){
+
+    if (dir==Direction::West)
         flip=SDL_FLIP_HORIZONTAL;
-    }
+
     SDL_RenderCopyEx(renderer,texture,&srcrect,&dstrect
                     ,0.0,nullptr,flip);
 }

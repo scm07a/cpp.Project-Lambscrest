@@ -67,6 +67,7 @@ void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
     player.handleInput(keyboardState);
+    // handleCollision();
     player.update(dt,world);
 }
 
@@ -74,10 +75,10 @@ void Game::render(TextureManager& tm){
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     world.render(renderer,tm.getTexture("background"));
-    player.render(renderer,tm.getTexture("player"));
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_RenderDrawRect(renderer,&world.getWall());
-    SDL_FillRect(nullptr,&world.getWall(),255);
+    SDL_RenderFillRect(renderer,&world.getWall());
+    player.render(renderer,tm.getTexture("player"));
     SDL_RenderPresent(renderer);
 }
 
@@ -95,8 +96,8 @@ bool Game::run(){
     return true;
 }
 
-void Game::handleCollision(){
-    if (world.checkCollison(player.getdstRect())){
+// void Game::handleCollision(){
+//     if (world.checkCollison(player.getdstRect())){
         
-    }
-}
+//     }
+// }

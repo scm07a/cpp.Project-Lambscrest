@@ -53,4 +53,6 @@ class Player{
         void render(SDL_Renderer* renderer,
                     SDL_Texture* texture);
         const SDL_Rect& getdstRect() const;
+        SDL_Rect getCollision() const;
+
 };
