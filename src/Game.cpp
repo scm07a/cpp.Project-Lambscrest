@@ -19,7 +19,7 @@ Game::Game():window(nullptr),
                             SDL_WINDOWPOS_CENTERED,
                             1280,
                             720,
-                            SDL_WINDOW_RESIZABLE);
+                            SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 
     if(!window){
@@ -54,6 +54,7 @@ double Game::calcSpeed(Uint64& lastTick){
                         SDL_GetPerformanceFrequency());
     lastTick=currentTick;
     return _deltaTime;
+    
 }
 
 bool Game::eventhandler(){
@@ -72,11 +73,16 @@ void Game::processInput(double dt){
 }
 
 void Game::render(TextureManager& tm){
+    SDL_Rect collision= player.getCollision();
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     world.render(renderer,tm.getTexture("background"));
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_RenderDrawRect(renderer,&world.getWall());
+
+    //*Debug Player Collision Box
+    SDL_RenderDrawRect(renderer,&collision);
+
     SDL_RenderFillRect(renderer,&world.getWall());
     player.render(renderer,tm.getTexture("player"));
     SDL_RenderPresent(renderer);

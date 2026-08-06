@@ -12,8 +12,8 @@ Player::Player(): x(100.f),y(100.f),
     dstrect.h=playerHeight;
     dstrect.x=static_cast<int>(x);
     dstrect.y=static_cast<int>(y);
-    srcrect.w=48;
-    srcrect.h=48;
+    srcrect.w=_FRAMESIZE;
+    srcrect.h=_FRAMESIZE;
     srcrect.x= currentframe * _FRAMESIZE;
     srcrect.y= anim.rows * _FRAMESIZE;
 }
@@ -76,9 +76,9 @@ void Player::handleInput(const Uint8* keyboardState){
 void Player::update(double dt, World& world){
     float nextX=x+moveX*speed*dt;
     float nextY=y+moveY*speed*dt;
-    SDL_Rect nextRect=dstrect;
-    nextRect.x=static_cast<int>(nextX);
-    nextRect.y=static_cast<int>(nextY);
+    SDL_Rect nextRect=getCollision();
+    nextRect.x=static_cast<int>(nextX)+playerCollision.offsetX;
+    nextRect.y=static_cast<int>(nextY)+playerCollision.offsetY;
     if(!world.checkCollison(nextRect)){
         x=nextX;
         y=nextY;
@@ -88,51 +88,74 @@ void Player::update(double dt, World& world){
     }
     animtimer+=dt;
     if(animtimer>_FRAMETIME){
-            switch(state){
-                case PlayerState::IdleNorth:
-                    anim.frames=6;
-                    anim.rows=2;
-                    break;
+        anim.frames=walkFrames;
+        switch(state){
+            case PlayerState::IdleNorth:
+                anim.rows=idleNorthIndex;
+                break;
 
-                case PlayerState::WalkNorth:
-                    anim.frames=6;
-                    anim.rows=5;
-                    break;
+            case PlayerState::WalkNorth:
+                anim.rows=walkNorthIndex;
+                break;
 
-                case PlayerState::IdleEast:
-                    anim.frames=6;
-                    anim.rows=1;
-                    break;
+            case PlayerState::IdleEast:
+                anim.rows=idleSidesIndex;
+                break;
 
-                case PlayerState::WalkEast:
-                    anim.frames=6;
-                    anim.rows=4;
-                    break;
-                
-                case PlayerState::IdleWest:
-                    anim.frames=6;
-                    anim.rows=1;
-                    break;
-                
-                case PlayerState::WalkWest:
-                    anim.frames=6;
-                    anim.rows=4;
-                    break;
-                
-                case PlayerState::IdleSouth:
-                    anim.frames=6;
-                    anim.rows=0;
-                    break;
+            case PlayerState::WalkEast:
+                anim.rows=walkSidesIndex;
+                break;
+            
+            case PlayerState::IdleWest:
+                anim.rows=idleSidesIndex;
+                break;
+            
+            case PlayerState::WalkWest:
+                anim.rows=walkSidesIndex;
+                break;
+            
+            case PlayerState::IdleSouth:
+                anim.rows=idleSouthIndex;
+                break;
 
-                case PlayerState::WalkSouth:
-                    anim.frames=6;
-                    anim.rows=3;
-                    break;
-                
-                default:
-                    throw std::runtime_error
-                    ("Unknown Player State Inside Player::update()");
-                    break;
+            case PlayerState::WalkSouth:
+                anim.rows=walkSouthIndex;
+                break;
+
+            case PlayerState::AttackSouth:
+                anim.frames=attackFrames;
+                anim.rows=attackSouthIndex;
+                break;
+            
+            case PlayerState::AttackEast:
+                anim.frames=attackFrames;
+                anim.rows=attackSidesIndex;
+                break;
+            
+            case PlayerState::AttackWest:
+                anim.frames=attackFrames;
+                anim.rows=attackSidesIndex;
+                break;
+
+            case PlayerState::AttackNorth:
+                anim.frames=attackFrames;
+                anim.rows=attackNorthIndex;
+                break;
+            
+            case PlayerState::DeathEast:
+                anim.frames=deathFrames;
+                anim.rows=deathIndex;
+                break;
+            
+            case PlayerState::DeathWest:
+                anim.frames=deathFrames;
+                anim.rows=deathIndex;
+                break;
+
+            default:
+                throw std::runtime_error
+                ("Unknown Player State Inside Player::update()");
+                break;
             }
         currentframe=(currentframe+1)%anim.frames;
         srcrect.x=currentframe*_FRAMESIZE;
@@ -153,4 +176,12 @@ void Player::render(SDL_Renderer* renderer,
 }
 const SDL_Rect& Player::getdstRect()const{
     return dstrect;
+}
+
+SDL_Rect Player::getCollision() const{
+    return SDL_Rect{dstrect.x+playerCollision.offsetX,
+                    dstrect.y+playerCollision.offsetY,
+                    playerCollision.width,
+                    playerCollision.height
+                    };
 }

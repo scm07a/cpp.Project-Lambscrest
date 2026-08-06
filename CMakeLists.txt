@@ -6,8 +6,10 @@ project(ProjectLambscrest LANGUAGES CXX)
 # C++ Standard
 # ==========================
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD_REQUIRED Yes)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 
 # Export compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
