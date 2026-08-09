@@ -24,15 +24,15 @@ Rather than relying on an existing game engine, this project uses **SDL2** to bu
 - Sprite flipping for left-facing animations
 - Tile-based world rendering
 - CMake + Ninja build system
+- Collision detection
+- Tile map loading
 
 ---
 
 ## Planned Features
 
-- Collision detection
 - Camera system
 - JSON-based asset loading
-- Tile map loading
 - World generation
 - Inventory system
 - Combat mechanics
@@ -72,12 +72,15 @@ Project-Lambscrest/
 │
 ├── include/
 │   ├── Game.h
+│   ├── Collision.h
+│   ├── shrdconst.h
 │   ├── Player.h
 │   ├── TextureManager.h
 │   └── World.h
 │
 ├── src/
 │   ├── main.cpp
+│   ├── Collision.cpp
 │   ├── Game.cpp
 │   ├── Player.cpp
 │   ├── TextureManager.cpp
