@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include "Game.h"
 #include "TextureManager.h"
+#include "Collision.h"
 
 Game::Game():window(nullptr),
             renderer(nullptr),
@@ -19,7 +20,7 @@ Game::Game():window(nullptr),
                             SDL_WINDOWPOS_CENTERED,
                             1280,
                             720,
-                            SDL_WINDOW_FULLSCREEN_DESKTOP);
+                            SDL_WINDOW_FULLSCREEN);
 
 
     if(!window){
@@ -33,7 +34,9 @@ Game::Game():window(nullptr),
                         window,
                         -1,
                         SDL_RENDERER_ACCELERATED);
+    
 
+    SDL_RenderSetLogicalSize(renderer,__WLOGICAL,__LLOGICAL);
     if(!renderer){
         throw std::runtime_error(
             std::string("SDL Renderer Creation Error:") 
@@ -73,15 +76,17 @@ void Game::processInput(double dt){
 }
 
 void Game::render(TextureManager& tm){
-    SDL_Rect collision= player.getCollision();
+    SDL_Rect debugPlayerCollision =
+                coll.spriteCollBox(player.getdstRect(),
+                                playerCollision);
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     world.render(renderer,tm.getTexture("background"));
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_RenderDrawRect(renderer,&world.getWall());
 
-    //*Debug Player Collision Box
-    SDL_RenderDrawRect(renderer,&collision);
+    //? Temp Player Hitbox
+    coll.debugDrawCollBox(renderer,debugPlayerCollision);
 
     SDL_RenderFillRect(renderer,&world.getWall());
     player.render(renderer,tm.getTexture("player"));

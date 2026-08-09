@@ -76,9 +76,10 @@ void Player::handleInput(const Uint8* keyboardState){
 void Player::update(double dt, World& world){
     float nextX=x+moveX*speed*dt;
     float nextY=y+moveY*speed*dt;
-    SDL_Rect nextRect=getCollision();
-    nextRect.x=static_cast<int>(nextX)+playerCollision.offsetX;
-    nextRect.y=static_cast<int>(nextY)+playerCollision.offsetY;
+    SDL_Rect nextSpriteRect=dstrect;
+    nextSpriteRect.x=static_cast<int>(nextX);
+    nextSpriteRect.y=static_cast<int>(nextY);
+    SDL_Rect nextRect=coll.spriteCollBox(nextSpriteRect,playerCollision);
     if(!world.checkCollison(nextRect)){
         x=nextX;
         y=nextY;
@@ -174,14 +175,14 @@ void Player::render(SDL_Renderer* renderer,
     SDL_RenderCopyEx(renderer,texture,&srcrect,&dstrect
                     ,0.0,nullptr,flip);
 }
-const SDL_Rect& Player::getdstRect()const{
+const SDL_Rect& Player::getdstRect() const{
     return dstrect;
 }
 
-SDL_Rect Player::getCollision() const{
-    return SDL_Rect{dstrect.x+playerCollision.offsetX,
-                    dstrect.y+playerCollision.offsetY,
-                    playerCollision.width,
-                    playerCollision.height
-                    };
+int Player::getdstRect_X()const{
+    return dstrect.x;
+}
+
+int Player::getdstRect_Y()const{
+    return dstrect.y;
 }

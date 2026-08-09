@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "World.h"
+#include "Collision.h"
 
 constexpr int _FRAMESIZE = 48;
 constexpr double _FRAMETIME = 0.2;
@@ -19,19 +20,6 @@ constexpr int deathIndex=9;
 constexpr int walkFrames = 6;
 constexpr int attackFrames = 4;
 constexpr int deathFrames=3;
-
-struct CollisionBox{
-    int width;
-    int height;
-    int offsetX;
-    int offsetY;
-};
-
-constexpr CollisionBox playerCollision{
-    47,5,55,70
-};
-
-
 
 enum class PlayerState{
     IdleNorth,
@@ -61,6 +49,13 @@ struct Animation{
     int rows,frames;
 };
 
+constexpr CollisionBox playerCollision{
+    55,
+    42,
+    41,
+    35
+};
+
 class Player{
     private:
         Direction dir= Direction::South;
@@ -77,7 +72,7 @@ class Player{
         SDL_Rect srcrect;
         int currentframe;
         double animtimer;
-        
+        Collision coll;
     public:
         Player();
         void handleInput(const Uint8* keyboardState);
@@ -85,5 +80,6 @@ class Player{
         void render(SDL_Renderer* renderer,
                     SDL_Texture* texture);
         const SDL_Rect& getdstRect() const;
-        SDL_Rect getCollision() const;
+        int getdstRect_X() const;
+        int getdstRect_Y() const;
 };
