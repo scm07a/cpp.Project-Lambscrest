@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include "World.h"
 #include "Collision.h"
-#include "Constants.h"
+#include "shrdconst.h"
 
 World::World(){
     tile.x=0;

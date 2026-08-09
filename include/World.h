@@ -2,7 +2,9 @@
 #include <SDL2/SDL.h>
 #include "TextureManager.h"
 
-
+//*World Tile Dimensions
+constexpr int _TILEWIDTH=50;
+constexpr int _TILEHEIGHT=50;
 
 class World{
     private:

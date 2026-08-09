@@ -4,7 +4,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collision.h"
-#include "Constants.h"
+#include "shrdconst.h"
 
 Game::Game():window(nullptr),
             renderer(nullptr),

@@ -3,11 +3,12 @@
 #include <stdexcept>
 #include "Game.h"
 
-auto main()->int{
+int main(){
     try{
         Game game;
         return game.run() ? 0:1;
     }
+    //*Catch All Errors in Game.cpp
     catch(const std::exception& e){
         std::cerr<<e.what()<<std::endl;
         return 2;
