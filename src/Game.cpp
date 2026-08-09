@@ -84,7 +84,7 @@ void Game::render(TextureManager& tm){
     world.render(renderer,tm.getTexture("background"));
     // SDL_RenderDrawRect(renderer,&world.getWall());
 
-    //* Collision Box Visualization
+    // Collision Box Visualization
     // Player
     // coll.debugDrawCollBox(renderer,debugPlayerCollision);
 

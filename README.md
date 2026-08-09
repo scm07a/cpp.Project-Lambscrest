@@ -25,7 +25,6 @@ Rather than relying on an existing game engine, this project uses **SDL2** to bu
 - Tile-based world rendering
 - CMake + Ninja build system
 - Collision detection
-- Tile map loading
 
 ---
 
