@@ -156,7 +156,7 @@ Project Lambscrest serves as a practical way to improve my understanding of:
 - [x] Animation system
 - [x] Directional player animations
 - [x] Tile-based world rendering
-- [ ] Collision detection
+- [x] Collision detection
 - [ ] Camera system
 - [ ] JSON asset loading
 - [ ] Tile map loading
