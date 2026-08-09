@@ -5,9 +5,6 @@
 #include "TextureManager.h"
 #include "Collision.h"
 
-constexpr int __WLOGICAL = 1280;
-constexpr int __LLOGICAL = 720;
-
 class Game{
     private:
         SDL_Window* window;

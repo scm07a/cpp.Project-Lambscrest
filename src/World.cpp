@@ -1,19 +1,20 @@
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "World.h"
-#include "Player.h"
+#include "Collision.h"
+#include "Constants.h"
 
 World::World(){
     tile.x=0;
     tile.y=0;
     tile.w = _TILEWIDTH;
     tile.h = _TILEHEIGHT;
-    wall.x=200;
-    wall.y=200;
-    wall.w=250;
-    wall.h=250;
+    lBorder={0,0,1,__ScreenHeight};
+    rBorder={__ScreenWidth-1,0,1,__ScreenHeight};
+    upBorder={0,0,__ScreenWidth,1};
+    downBorder={0,__ScreenHeight-1,__ScreenWidth,1};
 }
 
+//* Load World Tiles
 void World::render(SDL_Renderer* renderer,
                     SDL_Texture* texture)
 {
@@ -28,8 +29,11 @@ void World::render(SDL_Renderer* renderer,
 }
 
 bool World::checkCollison(const SDL_Rect& rect) const{
-    return SDL_HasIntersection(&wall,&rect);
+    return SDL_HasIntersection(&lBorder,&rect)||
+            SDL_HasIntersection(&rBorder,&rect)||
+            SDL_HasIntersection(&upBorder,&rect)||
+            SDL_HasIntersection(&downBorder,&rect);
 }
-const SDL_Rect& World::getWall() const{
-    return wall;
-}
+// const SDL_Rect& World::getWall() const{
+//     return wall;
+// }

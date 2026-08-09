@@ -1,6 +1,5 @@
 #include "Collision.h"
 #include <SDL2/SDL.h>
-#include "Player.h"
 
 SDL_Rect Collision::spriteCollBox(const SDL_Rect& spriteRect,
                                 const CollisionBox& collBox) const

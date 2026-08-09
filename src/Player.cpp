@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <stdexcept>
 #include <string>
+#include "Constants.h"
 
 Player::Player(): x(100.f),y(100.f),
                 currentframe(0),animtimer(0.0)
