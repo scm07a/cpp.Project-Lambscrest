@@ -25,13 +25,13 @@ Rather than relying on an existing game engine, this project uses **SDL2** to bu
 - Tile-based world rendering
 - CMake + Ninja build system
 - Collision detection
+- JSON-based asset loading
 
 ---
 
 ## Planned Features
 
 - Camera system
-- JSON-based asset loading
 - World generation
 - Inventory system
 - Combat mechanics
@@ -162,7 +162,7 @@ Project Lambscrest serves as a practical way to improve my understanding of:
 - [ ] Camera system
 - [ ] Text/UI rendering
 - [ ] Tutorial prompts
-- [ ] JSON asset loading
+- [x] JSON asset loading
 - [ ] Tile map loading
 - [ ] Inventory system
 - [ ] Combat mechanics
