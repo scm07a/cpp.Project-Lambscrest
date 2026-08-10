@@ -160,9 +160,10 @@ Project Lambscrest serves as a practical way to improve my understanding of:
 - [x] Tile-based world rendering
 - [x] Collision detection
 - [ ] Camera system
+- [ ] Text/UI rendering
+- [ ] Tutorial prompts
 - [ ] JSON asset loading
 - [ ] Tile map loading
-- [ ] World generation
 - [ ] Inventory system
 - [ ] Combat mechanics
 - [ ] Enemy AI

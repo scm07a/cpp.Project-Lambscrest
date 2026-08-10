@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collision.h"
@@ -16,11 +17,17 @@ Game::Game():window(nullptr),
             + SDL_GetError());
     }
 
+    if(TTF_Init()!=0){
+        throw std::runtime_error(
+            std::string("SDL TTF Initialization Error:")
+            +TTF_GetError());
+    }
+
     window=SDL_CreateWindow("Project Lambscrest",
                             SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED,
-                            1280,
-                            720,
+                            __ScreenWidth,
+                            __ScreenHeight,
                             SDL_WINDOW_FULLSCREEN);
 
 
@@ -37,15 +44,19 @@ Game::Game():window(nullptr),
                         SDL_RENDERER_ACCELERATED);
     
 
-    SDL_RenderSetLogicalSize(renderer,__ScreenWidth,__ScreenHeight);
     if(!renderer){
         throw std::runtime_error(
             std::string("SDL Renderer Creation Error:") 
             + SDL_GetError());
     }
+    SDL_RenderSetLogicalSize(renderer,
+                            __ScreenWidth,
+                            __ScreenHeight);
 }
 
 Game::~Game(){
+    tm.clear();
+    TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -76,12 +87,12 @@ void Game::processInput(double dt){
     player.update(dt,world);
 }
 
-void Game::render(TextureManager& tm){
+void Game::render(){
     // SDL_Rect debugPlayerCollision =
     //             coll.spriteCollBox(player.getdstRect(),
     //                             playerCollision);
     SDL_RenderClear(renderer);
-    world.render(renderer,tm.getTexture("background"));
+    world.render(renderer,tm.getTexture("grass"));
     // SDL_RenderDrawRect(renderer,&world.getWall());
 
     // Collision Box Visualization
@@ -97,15 +108,21 @@ void Game::render(TextureManager& tm){
 }
 
 bool Game::run(){
-    tm.loadTexture(renderer,"player","assets/textures/characters/player.png");
-    tm.loadTexture(renderer,"background","assets/textures/tilesets/grass.png");
+    if(!am.loadAssets("assets/assets.json"))
+        throw std::runtime_error("Failed To Load assets.json file");
+    tm.loadTexture(renderer,"player",
+                am.get_tpath("player"));
+
+    tm.loadTexture(renderer,"grass",
+                    am.get_tpath("grass"));
+
     Uint64 lastTick = SDL_GetPerformanceCounter();
 
     while(isRunning){
         double _deltaTime= calcSpeed(lastTick);
         if(!eventhandler()) isRunning=false;
         processInput(_deltaTime);
-        render(tm);
+        render();
     }
     return true;
 }

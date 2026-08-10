@@ -10,7 +10,7 @@ SDL_Rect Collision::spriteCollBox(const SDL_Rect& spriteRect,
                     collBox.height
                     };
 }
-Collision::Collision(){}
+Collision::Collision()=default;
 
 void Collision::debugDrawCollBox(SDL_Renderer* renderer,
                             const SDL_Rect& spriteRect)const

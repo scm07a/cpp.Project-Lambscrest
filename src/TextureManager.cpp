@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 
-TextureManager::TextureManager(){}
+TextureManager::TextureManager()=default;
 
 bool TextureManager::loadTexture(SDL_Renderer* renderer,
                                 const std::string& key,
@@ -38,4 +38,10 @@ SDL_Texture* TextureManager::getTexture(const std::string& key){
 TextureManager::~TextureManager(){
     for (const auto& it: textures)
         SDL_DestroyTexture(it.second);
+}
+
+void TextureManager::clear(){
+    for (auto& [key,texture]: textures)
+        SDL_DestroyTexture(texture);
+    textures.clear();
 }

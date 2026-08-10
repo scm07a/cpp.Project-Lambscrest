@@ -14,4 +14,5 @@ class TextureManager{
                         const std::string& key,
                         const std::string& path);
         SDL_Texture* getTexture(const std::string& key);
+        void clear();
 };

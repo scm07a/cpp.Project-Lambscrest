@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "TextureManager.h"
 #include "Collision.h"
+#include "AssetManager.h"
 
 class Game{
     private:
@@ -14,13 +15,14 @@ class Game{
         World world;
         TextureManager tm;
         Collision coll;
+        AssetManager am;
     public:
         Game();
         ~Game();
         double calcSpeed(Uint64& lastTick);
         bool eventhandler();
         void processInput(double dt);
-        void render(TextureManager& tm);
+        void render();
         bool run();
         void handleCollision();
 };
