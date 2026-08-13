@@ -75,6 +75,7 @@ Project-Lambscrest/
 │   ├── shrdconst.h
 │   ├── Player.h
 │   ├── TextureManager.h
+│   ├── AssetManager.h
 │   └── World.h
 │
 ├── src/
@@ -83,6 +84,7 @@ Project-Lambscrest/
 │   ├── Game.cpp
 │   ├── Player.cpp
 │   ├── TextureManager.cpp
+│   ├── AssetManager.cpp
 │   └── World.cpp
 │
 ├── .gitignore
