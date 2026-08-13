@@ -1,5 +1,5 @@
 #pragma once
 
 //*Window Width And Height
-constexpr int __ScreenWidth = 1280;
-constexpr int __ScreenHeight = 720;
+constexpr int __ScreenWidth = 1920;
+constexpr int __ScreenHeight = 1080;

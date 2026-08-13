@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
 
-
 struct CollisionBox{
     int offsetX;
     int offsetY;

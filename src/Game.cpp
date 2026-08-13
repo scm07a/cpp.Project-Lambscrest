@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "Game.h"
 #include "TextureManager.h"
@@ -9,12 +10,22 @@
 
 Game::Game():window(nullptr),
             renderer(nullptr),
-            isRunning(true)
+            isRunning(true),
+            am(tm)
 {
     if(SDL_Init(SDL_INIT_VIDEO)!=0){
         throw std::runtime_error(
             std::string("SDL App Initialization Error:") 
             + SDL_GetError());
+    }
+
+    int imgFlags = IMG_INIT_PNG;
+
+    if ((IMG_Init(imgFlags) & imgFlags) != imgFlags)
+    {
+        throw std::runtime_error(
+            std::string("SDL Image Initialization Error: ")
+            + IMG_GetError());
     }
 
     if(TTF_Init()!=0){
@@ -56,6 +67,7 @@ Game::Game():window(nullptr),
 
 Game::~Game(){
     tm.clear();
+    IMG_Quit();
     TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
@@ -108,13 +120,13 @@ void Game::render(){
 }
 
 bool Game::run(){
-    if(!am.loadAssets("assets/assets.json"))
+    if(!am.loadAssets(renderer,"assets/assets.json"))
         throw std::runtime_error("Failed To Load assets.json file");
-    tm.loadTexture(renderer,"player",
-                am.get_tpath("player"));
+    // tm.loadTexture(renderer,"player",
+    //             am.get_tpath("player"));
 
-    tm.loadTexture(renderer,"grass",
-                    am.get_tpath("grass"));
+    // tm.loadTexture(renderer,"grass",
+    //                 am.get_tpath("grass"));
 
     Uint64 lastTick = SDL_GetPerformanceCounter();
 

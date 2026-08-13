@@ -4,7 +4,8 @@
 #include <fstream>
 #include <stdexcept>
 
-AssetManager::AssetManager(){
+AssetManager::AssetManager(TextureManager& textureManager):
+                        tm(textureManager){
     char* path = SDL_GetBasePath();
     if(!path)
         throw std::runtime_error("Failed To Find .exe Path");
@@ -13,7 +14,8 @@ AssetManager::AssetManager(){
     SDL_free(path);
 }
 
-bool AssetManager::loadAssets(const std::string& path){
+bool AssetManager::loadAssets(SDL_Renderer* renderer,
+                            const std::string& path){
     std::ifstream file(basePath+ "../"+path);
     if (!file.is_open()) return false;
     try{
@@ -22,6 +24,14 @@ bool AssetManager::loadAssets(const std::string& path){
     catch(const json::parse_error&e){
         std::cerr<<e.what()<<std::endl;
         return false;
+    }
+    for (const auto& [key,texturePath]: data["textures"].items()){
+        std::cout << "KEY:  " << key << '\n';
+        std::cout << "PATH: " << texturePath << '\n';
+        if(!tm.loadTexture(renderer,key,texturePath)){
+            std::cerr << "Failed to load texture: "
+                        << key << std::endl;
+        }
     }
     return true;
 }
