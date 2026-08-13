@@ -66,6 +66,7 @@ Project-Lambscrest/
 │   ├── audio/
 │   ├── fonts/
 │   └── textures/
+│   └── assets.json
 │
 ├── build/
 │
