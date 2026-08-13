@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include "World.h"
 #include "Collision.h"
+#include "TextureManager.h"
 
 //* Player Frame Indices and Sizes
 constexpr int _FRAMESIZE = 48;
@@ -79,7 +80,7 @@ class Player{
         void handleInput(const Uint8* keyboardState);
         void update(double dt,World& world);
         void render(SDL_Renderer* renderer,
-                    SDL_Texture* texture);
+                    TextureManager& tm);
         const SDL_Rect& getdstRect() const;
         int getdstRect_X() const;
         int getdstRect_Y() const;

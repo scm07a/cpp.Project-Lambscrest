@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include "shrdconst.h"
+#include "TextureManager.h"
 
 Player::Player(): x(100.f),y(100.f),
                 currentframe(0),animtimer(0.0)
@@ -167,13 +168,15 @@ void Player::update(double dt, World& world){
 }
 
 void Player::render(SDL_Renderer* renderer,
-                    SDL_Texture* texture){
+                    TextureManager& tm){
+    
+    SDL_Texture* textureKey= tm.getTexture("player");
     SDL_RendererFlip flip = SDL_FLIP_NONE;
 
     if (dir==Direction::West)
         flip=SDL_FLIP_HORIZONTAL;
 
-    SDL_RenderCopyEx(renderer,texture,&srcrect,&dstrect
+    SDL_RenderCopyEx(renderer,textureKey,&srcrect,&dstrect
                     ,0.0,nullptr,flip);
 }
 const SDL_Rect& Player::getdstRect() const{

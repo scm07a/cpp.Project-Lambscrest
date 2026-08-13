@@ -26,9 +26,11 @@ bool AssetManager::loadAssets(SDL_Renderer* renderer,
         return false;
     }
     for (const auto& [key,texturePath]: data["textures"].items()){
+        std::string fullPath = basePath + "../" + 
+                            texturePath.get<std::string>();
         std::cout << "KEY:  " << key << '\n';
         std::cout << "PATH: " << texturePath << '\n';
-        if(!tm.loadTexture(renderer,key,texturePath)){
+        if(!tm.loadTexture(renderer,key,fullPath)){
             std::cerr << "Failed to load texture: "
                         << key << std::endl;
         }

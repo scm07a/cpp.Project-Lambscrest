@@ -2,6 +2,7 @@
 #include "World.h"
 #include "Collision.h"
 #include "shrdconst.h"
+#include "TextureManager.h"
 
 World::World(){
     tile.x=0;
@@ -16,13 +17,14 @@ World::World(){
 
 //* Load World Tiles
 void World::render(SDL_Renderer* renderer,
-                    SDL_Texture* texture)
+                    TextureManager& tm)
 {
+    SDL_Texture* textureKey= tm.getTexture("grass");
     for (size_t row=0;row<22;row++){
         for (size_t col=0;col<39;col++){
             tile.x=col*_TILEWIDTH;
             tile.y=row*_TILEHEIGHT;
-            SDL_RenderCopy(renderer,texture,
+            SDL_RenderCopy(renderer,textureKey,
                             nullptr,&tile);
         }
     }
@@ -34,6 +36,3 @@ bool World::checkCollison(const SDL_Rect& rect) const{
             SDL_HasIntersection(&upBorder,&rect)||
             SDL_HasIntersection(&downBorder,&rect);
 }
-// const SDL_Rect& World::getWall() const{
-//     return wall;
-// }

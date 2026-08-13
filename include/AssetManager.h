@@ -9,7 +9,6 @@ class AssetManager{
         json data;
         std::string basePath;
         TextureManager& tm;
-        // SDL_Renderer* renderer;
     public:
         AssetManager(TextureManager& textureManager);
         bool loadAssets(SDL_Renderer* renderer,

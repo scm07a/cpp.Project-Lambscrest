@@ -100,33 +100,15 @@ void Game::processInput(double dt){
 }
 
 void Game::render(){
-    // SDL_Rect debugPlayerCollision =
-    //             coll.spriteCollBox(player.getdstRect(),
-    //                             playerCollision);
     SDL_RenderClear(renderer);
-    world.render(renderer,tm.getTexture("grass"));
-    // SDL_RenderDrawRect(renderer,&world.getWall());
-
-    // Collision Box Visualization
-    // Player
-    // coll.debugDrawCollBox(renderer,debugPlayerCollision);
-
-    // White Rectangle
-    // SDL_SetRenderDrawColor(renderer,255,255,255,255);
-    // SDL_RenderFillRect(renderer,&world.getWall());
-
-    player.render(renderer,tm.getTexture("player"));
+    world.render(renderer,tm);
+    player.render(renderer,tm);
     SDL_RenderPresent(renderer);
 }
 
 bool Game::run(){
     if(!am.loadAssets(renderer,"assets/assets.json"))
         throw std::runtime_error("Failed To Load assets.json file");
-    // tm.loadTexture(renderer,"player",
-    //             am.get_tpath("player"));
-
-    // tm.loadTexture(renderer,"grass",
-    //                 am.get_tpath("grass"));
 
     Uint64 lastTick = SDL_GetPerformanceCounter();
 

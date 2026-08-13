@@ -11,7 +11,6 @@ struct CollisionBox{
 
 
 class Collision{
-    // private:
     public:
         SDL_Rect spriteCollBox(const SDL_Rect& spriteRect,
                                 const CollisionBox& collBox) const;

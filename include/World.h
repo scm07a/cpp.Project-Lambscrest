@@ -9,7 +9,6 @@ constexpr int _TILEHEIGHT=50;
 class World{
     private:
         SDL_Rect tile;
-        // SDL_Rect wall;
         SDL_Rect lBorder;
         SDL_Rect rBorder;
         SDL_Rect upBorder;
@@ -17,7 +16,7 @@ class World{
 
     public:
         World();
-        void render(SDL_Renderer* renderer, SDL_Texture* texture);
+        void render(SDL_Renderer* renderer, TextureManager& tm);
         bool checkCollison(const SDL_Rect& rect) const;
         // const SDL_Rect& getWall() const;
 };
