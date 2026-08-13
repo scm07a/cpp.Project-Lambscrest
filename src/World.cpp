@@ -19,12 +19,12 @@ World::World(){
 void World::render(SDL_Renderer* renderer,
                     TextureManager& tm)
 {
-    SDL_Texture* textureKey= tm.getTexture("grass");
+    SDL_Texture* grassKey= tm.getTexture("grass");
     for (size_t row=0;row<22;row++){
         for (size_t col=0;col<39;col++){
             tile.x=col*_TILEWIDTH;
             tile.y=row*_TILEHEIGHT;
-            SDL_RenderCopy(renderer,textureKey,
+            SDL_RenderCopy(renderer,grassKey,
                             nullptr,&tile);
         }
     }
