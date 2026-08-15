@@ -12,6 +12,6 @@ class AssetManager{
     public:
         AssetManager(TextureManager& textureManager);
         bool loadAssets(SDL_Renderer* renderer,
-                        const std::string& path);
-        std::string get_tpath(const std::string& key)const;
+                    const std::string& path);
+        // std::string get_tpath(const std::string& key)const;
 };

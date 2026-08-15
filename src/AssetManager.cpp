@@ -15,12 +15,11 @@ AssetManager::AssetManager(TextureManager& textureManager):
 }
 
 bool AssetManager::loadAssets(SDL_Renderer* renderer,
-                            const std::string& path){
+                    const std::string& path)
+{
     std::ifstream file(basePath+ "../"+path);
     if (!file.is_open()) return false;
-    try{
-            file>>data;
-    }
+    try{file>>data;}
     catch(const json::parse_error&e){
         std::cerr<<e.what()<<std::endl;
         return false;
@@ -28,8 +27,8 @@ bool AssetManager::loadAssets(SDL_Renderer* renderer,
     for (const auto& [key,texturePath]: data["textures"].items()){
         std::string fullPath = basePath + "../" + 
                             texturePath.get<std::string>();
-        std::cout << "KEY:  " << key << '\n';
-        std::cout << "PATH: " << texturePath << '\n';
+        // std::cout << "KEY:  " << key << '\n';
+        // std::cout << "PATH: " << texturePath << '\n';
         if(!tm.loadTexture(renderer,key,fullPath)){
             std::cerr << "Failed to load texture: "
                         << key << std::endl;
@@ -38,6 +37,6 @@ bool AssetManager::loadAssets(SDL_Renderer* renderer,
     return true;
 }
 
-std::string AssetManager::get_tpath(const std::string& key)const{
-    return basePath + "../" + data["textures"][key].get<std::string>();
-}
+// std::string AssetManager::get_tpath(const std::string& key)const{
+//     return basePath + "../" + data["textures"][key].get<std::string>();
+// }

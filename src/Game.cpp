@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collision.h"
-#include "shrdconst.h"
+#include "Constants.h"
 
 Game::Game():window(nullptr),
             renderer(nullptr),
@@ -39,7 +39,9 @@ Game::Game():window(nullptr),
                             SDL_WINDOWPOS_CENTERED,
                             __ScreenWidth,
                             __ScreenHeight,
-                            SDL_WINDOW_FULLSCREEN);
+                            SDL_WINDOW_FULLSCREEN_DESKTOP);
+                            //* Not SDL_WINDOW_FULLSCREEN
+                            //* For Console Debugging Purposes
 
 
     if(!window){
@@ -74,6 +76,8 @@ Game::~Game(){
     SDL_Quit();
 }
 double Game::calcSpeed(Uint64& lastTick){
+    //* Delta Time Calculation For Proper FPS And Game Speed
+    //* No Corellation With Animation Speed Only Game Mechanics
     Uint64 currentTick = SDL_GetPerformanceCounter();
     double _deltaTime = static_cast<double>
                         (currentTick-lastTick)/
@@ -85,6 +89,7 @@ double Game::calcSpeed(Uint64& lastTick){
 }
 
 bool Game::eventhandler(){
+    //* Handles All Type Off Events (Exiting The Game)
     SDL_Event event;
     while (SDL_PollEvent(&event))
         if(event.type==SDL_QUIT) return false;
@@ -95,7 +100,6 @@ void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
     player.handleInput(keyboardState);
-    // handleCollision();
     player.update(dt,world);
 }
 

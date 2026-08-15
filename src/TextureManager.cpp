@@ -9,18 +9,18 @@ bool TextureManager::loadTexture(SDL_Renderer* renderer,
                                 const std::string& key,
                                 const std::string& path)
 {
-    std::cout << "Loading: [" << path << "]\n";
+    // std::cout << "Loading: [" << path << "]\n";
 
-    std::ifstream test(path, std::ios::binary);
+    // std::ifstream test(path, std::ios::binary);
 
-    if (!test)
-    {
-        std::cerr << "FILE DOES NOT EXIST / CANNOT OPEN\n";
-    }
-    else
-    {
-        std::cerr << "FILE EXISTS\n";
-    }
+    // if (!test)
+    // {
+    //     std::cerr << "FILE DOES NOT EXIST / CANNOT OPEN\n";
+    // }
+    // else
+    // {
+    //     std::cerr << "FILE EXISTS\n";
+    // }
 
     SDL_Surface* surface = IMG_Load(path.c_str());
     if(!surface){

@@ -8,7 +8,7 @@ int main(){
         Game game;
         return game.run() ? 0:1;
     }
-    //*Catch All Errors in Game.cpp
+    //*Catch All Errors in *.cpp
     catch(const std::exception& e){
         std::cerr<<e.what()<<std::endl;
         return 2;

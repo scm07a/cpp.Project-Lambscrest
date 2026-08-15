@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <stdexcept>
 #include <string>
-#include "shrdconst.h"
+#include "Constants.h"
 #include "TextureManager.h"
 
 Player::Player(): x(100.f),y(100.f),
