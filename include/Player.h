@@ -77,7 +77,8 @@ class Player{
         Collision coll;
     public:
         Player();
-        void handleInput(const Uint8* keyboardState);
+        void handleInput(const Uint8* keyboardState,
+                        const Uint8* mouseState);
         void update(double dt,World& world);
         void render(SDL_Renderer* renderer,
                     TextureManager& tm);

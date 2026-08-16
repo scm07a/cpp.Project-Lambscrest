@@ -99,7 +99,9 @@ bool Game::eventhandler(){
 void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
-    player.handleInput(keyboardState);
+    const Uint8* mouseState=
+        SDL_GetMouseState(nullptr);
+    player.handleInput(keyboardState,mouseState);
     player.update(dt,world);
 }
 
