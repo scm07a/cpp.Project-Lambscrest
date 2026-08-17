@@ -20,9 +20,7 @@ Player::Player(): x(100.f),y(100.f),
     srcrect.y= anim.rows * _FRAMESIZE;
 }
 
-void Player::handleInput(const Uint8* keyboardState,
-                        const Uint8* mouseState)
-{
+void Player::handleInput(const Uint8* keyboardState){
     moveX=0.f;
     moveY=0.f;
     const Uint8 wKey = keyboardState[SDL_SCANCODE_W];
@@ -30,9 +28,7 @@ void Player::handleInput(const Uint8* keyboardState,
     const Uint8 aKey = keyboardState[SDL_SCANCODE_A];
     const Uint8 dKey = keyboardState[SDL_SCANCODE_D];
     const Uint8 shiftKey = keyboardState[SDL_SCANCODE_LSHIFT];
-    const Uint8 LMBKey = mouseState[SDL_BUTTON_LEFT];
     bool moving = false;
-    bool attacking = false;
 
     if(wKey){
         moveY=-1.f;
@@ -63,16 +59,6 @@ void Player::handleInput(const Uint8* keyboardState,
         moving=true;
     }
 
-    if(LMBKey){
-        if (state==PlayerState::IdleWest||
-            state==PlayerState::WalkWest||
-            dir==Direction::West){
-                std::cout<<"LMB CLICKED"<<std::endl;
-                state==PlayerState::AttackWest;
-                dir=Direction::West;
-                attacking = true;
-            }
-    }
 
     if(shiftKey) speed=200.f;
     else if (!shiftKey) speed = 150.f;
@@ -89,8 +75,6 @@ void Player::handleInput(const Uint8* keyboardState,
     if (!moving && dir==Direction::West)
         state=PlayerState::IdleWest;
     
-    if(!attacking && dir==Direction::West)
-        state=PlayerState::IdleWest;
 }
 void Player::update(double dt, World& world){
     float nextX=x+moveX*speed*dt;
@@ -207,4 +191,28 @@ int Player::getdstRect_X()const{
 
 int Player::getdstRect_Y()const{
     return dstrect.y;
+}
+
+void Player::handleAtk(SDL_Event& event){
+    if (event.type!=SDL_MOUSEBUTTONDOWN)
+        return;
+    if(event.button.button!=SDL_BUTTON_LEFT)
+        return;
+    
+    switch (dir){
+        case Direction::North:
+            state=PlayerState::AttackNorth;
+            break;
+        case Direction::South:
+            state=PlayerState::AttackSouth;
+            break;
+        case Direction::East:
+            state=PlayerState::AttackEast;
+            break;
+        case Direction::West:
+            state=PlayerState::AttackWest;
+            break;
+        default:
+            break;
+    }
 }

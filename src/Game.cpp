@@ -92,16 +92,17 @@ bool Game::eventhandler(){
     //* Handles All Type Off Events (Exiting The Game)
     SDL_Event event;
     while (SDL_PollEvent(&event))
-        if(event.type==SDL_QUIT) return false;
+        if(event.type==SDL_QUIT){
+            return false;
+            player.handleAtk(event);
+        }
     return true;
 }   
 
 void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
-    const Uint8* mouseState=
-        SDL_GetMouseState(nullptr);
-    player.handleInput(keyboardState,mouseState);
+    player.handleInput(keyboardState);
     player.update(dt,world);
 }
 
