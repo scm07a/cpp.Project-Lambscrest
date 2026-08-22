@@ -85,4 +85,5 @@ class Player{
         int getdstRect_X() const;
         int getdstRect_Y() const;
         void handleAtk(SDL_Event& event);
+        bool isAtk()const;
 };

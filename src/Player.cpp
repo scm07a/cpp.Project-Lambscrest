@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <SDL2/SDL.h>
 #include <stdexcept>
-#include <string>
+#include <iostream>
 #include "Constants.h"
 #include "TextureManager.h"
 
@@ -21,6 +21,7 @@ Player::Player(): x(100.f),y(100.f),
 }
 
 void Player::handleInput(const Uint8* keyboardState){
+    if (isAtk()) return;
     moveX=0.f;
     moveY=0.f;
     const Uint8 wKey = keyboardState[SDL_SCANCODE_W];
@@ -162,7 +163,16 @@ void Player::update(double dt, World& world){
                 ("Unknown Player State Inside Player::update()");
                 break;
             }
-        currentframe=(currentframe+1)%anim.frames;
+        if (isAtk()){
+            if(currentframe<anim.frames-1)
+                currentframe++;
+            else{
+                state=PlayerState::IdleSouth;
+                currentframe=0;
+            }
+    }
+        else
+            currentframe=(currentframe+1)%anim.frames;
         srcrect.x=currentframe*_FRAMESIZE;
         srcrect.y=anim.rows*_FRAMESIZE;
         animtimer-=_FRAMETIME;
@@ -194,25 +204,35 @@ int Player::getdstRect_Y()const{
 }
 
 void Player::handleAtk(SDL_Event& event){
-    if (event.type!=SDL_MOUSEBUTTONDOWN)
-        return;
-    if(event.button.button!=SDL_BUTTON_LEFT)
-        return;
-    
+    if (event.type!=SDL_MOUSEBUTTONDOWN) return; 
+    if(event.button.button!=SDL_BUTTON_LEFT) return;
     switch (dir){
         case Direction::North:
+            std::cout<<"Atk"<<std::endl;
             state=PlayerState::AttackNorth;
             break;
         case Direction::South:
+            std::cout<<"Atk"<<std::endl;
             state=PlayerState::AttackSouth;
             break;
         case Direction::East:
+            std::cout<<"Atk"<<std::endl;
             state=PlayerState::AttackEast;
             break;
         case Direction::West:
+            std::cout<<"Atk"<<std::endl;
             state=PlayerState::AttackWest;
             break;
         default:
             break;
     }
+    currentframe=0;
+    animtimer=0.f;
+}
+
+bool Player::isAtk()const{
+    return state==PlayerState::AttackEast||
+            state==PlayerState::AttackNorth||
+            state==PlayerState::AttackSouth||
+            state==PlayerState::AttackWest;
 }

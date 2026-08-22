@@ -91,11 +91,10 @@ double Game::calcSpeed(Uint64& lastTick){
 bool Game::eventhandler(){
     //* Handles All Type Off Events (Exiting The Game)
     SDL_Event event;
-    while (SDL_PollEvent(&event))
-        if(event.type==SDL_QUIT){
-            return false;
-            player.handleAtk(event);
-        }
+    while (SDL_PollEvent(&event)){
+        if(event.type==SDL_QUIT) return false;
+        player.handleAtk(event);
+    }
     return true;
 }   
 
