@@ -93,68 +93,68 @@ void Player::update(double dt, World& world){
     }
     animtimer+=dt;
     if(animtimer>_FRAMETIME){
-        anim.frames=walkFrames;
+        anim.frames=PlayerAnimation::walkFrames;
         switch(state){
             case PlayerState::IdleNorth:
-                anim.rows=idleNorthIndex;
+                anim.rows=PlayerAnimation::idleNorthIndex;
                 break;
 
             case PlayerState::WalkNorth:
-                anim.rows=walkNorthIndex;
+                anim.rows=PlayerAnimation::walkNorthIndex;
                 break;
 
             case PlayerState::IdleEast:
-                anim.rows=idleSidesIndex;
+                anim.rows=PlayerAnimation::idleSidesIndex;
                 break;
 
             case PlayerState::WalkEast:
-                anim.rows=walkSidesIndex;
+                anim.rows=PlayerAnimation::walkSidesIndex;
                 break;
             
             case PlayerState::IdleWest:
-                anim.rows=idleSidesIndex;
+                anim.rows=PlayerAnimation::idleSidesIndex;
                 break;
             
             case PlayerState::WalkWest:
-                anim.rows=walkSidesIndex;
+                anim.rows=PlayerAnimation::walkSidesIndex;
                 break;
             
             case PlayerState::IdleSouth:
-                anim.rows=idleSouthIndex;
+                anim.rows=PlayerAnimation::idleSouthIndex;
                 break;
 
             case PlayerState::WalkSouth:
-                anim.rows=walkSouthIndex;
+                anim.rows=PlayerAnimation::walkSouthIndex;
                 break;
 
             case PlayerState::AttackSouth:
-                anim.frames=attackFrames;
-                anim.rows=attackSouthIndex;
+                anim.frames=PlayerAnimation::attackFrames;
+                anim.rows=PlayerAnimation::attackSouthIndex;
                 break;
             
             case PlayerState::AttackEast:
-                anim.frames=attackFrames;
-                anim.rows=attackSidesIndex;
+                anim.frames=PlayerAnimation::attackFrames;
+                anim.rows=PlayerAnimation::attackSidesIndex;
                 break;
             
             case PlayerState::AttackWest:
-                anim.frames=attackFrames;
-                anim.rows=attackSidesIndex;
+                anim.frames=PlayerAnimation::attackFrames;
+                anim.rows=PlayerAnimation::attackSidesIndex;
                 break;
 
             case PlayerState::AttackNorth:
-                anim.frames=attackFrames;
-                anim.rows=attackNorthIndex;
+                anim.frames=PlayerAnimation::attackFrames;
+                anim.rows=PlayerAnimation::attackNorthIndex;
                 break;
             
             case PlayerState::DeathEast:
-                anim.frames=deathFrames;
-                anim.rows=deathIndex;
+                anim.frames=PlayerAnimation::deathFrames;
+                anim.rows=PlayerAnimation::deathIndex;
                 break;
             
             case PlayerState::DeathWest:
-                anim.frames=deathFrames;
-                anim.rows=deathIndex;
+                anim.frames=PlayerAnimation::deathFrames;
+                anim.rows=PlayerAnimation::deathIndex;
                 break;
 
 
@@ -163,19 +163,20 @@ void Player::update(double dt, World& world){
                 ("Unknown Player State Inside Player::update()");
                 break;
             }
-        if (isAtk()){
-            if(currentframe<anim.frames-1)
-                currentframe++;
-            else{
-                state=PlayerState::IdleSouth;
-                currentframe=0;
-            }
+
+    if (isAtk()){
+        if(currentframe<anim.frames-1) currentframe++;
+
+        else{
+            state=PlayerState::IdleSouth;
+            currentframe=0;
+        }
     }
-        else
-            currentframe=(currentframe+1)%anim.frames;
-        srcrect.x=currentframe*_FRAMESIZE;
-        srcrect.y=anim.rows*_FRAMESIZE;
-        animtimer-=_FRAMETIME;
+    else
+        currentframe=(currentframe+1)%anim.frames;
+    srcrect.x=currentframe*_FRAMESIZE;
+    srcrect.y=anim.rows*_FRAMESIZE;
+    animtimer-=_FRAMETIME;
     }
 }
 

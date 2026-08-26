@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include "World.h"
 #include "Player.h"
+#include "Slime.h"
 #include "TextureManager.h"
 #include "Collision.h"
 #include "AssetManager.h"
@@ -12,6 +13,7 @@ class Game{
         SDL_Renderer* renderer;
         bool isRunning;
         Player player;
+        Slime slime;
         World world;
         TextureManager tm;
         Collision coll;

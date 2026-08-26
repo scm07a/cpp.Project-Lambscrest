@@ -1,6 +1,7 @@
 {
     "textures":{
         "player":"assets/textures/characters/player.png",
+        "slime":"assets/textures/characters/slime.png",
         "grass":"assets/textures/tilesets/grass.png"
     }
 }

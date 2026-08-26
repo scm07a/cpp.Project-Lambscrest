@@ -109,6 +109,7 @@ void Game::render(){
     SDL_RenderClear(renderer);
     world.render(renderer,tm);
     player.render(renderer,tm);
+    slime.render(renderer,tm);
     SDL_RenderPresent(renderer);
 }
 
