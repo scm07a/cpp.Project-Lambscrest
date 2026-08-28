@@ -37,6 +37,3 @@ bool AssetManager::loadAssets(SDL_Renderer* renderer,
     return true;
 }
 
-// std::string AssetManager::get_tpath(const std::string& key)const{
-//     return basePath + "../" + data["textures"][key].get<std::string>();
-// }

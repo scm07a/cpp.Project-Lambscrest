@@ -1,6 +1,7 @@
 #include "Collision.h"
 #include <SDL2/SDL.h>
 
+Collision::Collision(){}
 SDL_Rect Collision::spriteCollBox(const SDL_Rect& spriteRect,
                                 const CollisionBox& collBox) const
 {
@@ -10,7 +11,6 @@ SDL_Rect Collision::spriteCollBox(const SDL_Rect& spriteRect,
                     collBox.height
                     };
 }
-Collision::Collision()=default;
 
 void Collision::debugDrawCollBox(SDL_Renderer* renderer,
                             const SDL_Rect& spriteRect)const

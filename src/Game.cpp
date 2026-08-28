@@ -68,9 +68,11 @@ Game::~Game(){
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
+
 double Game::calcSpeed(Uint64& lastTick){
     //* Delta Time Calculation For Proper FPS And Game Speed
-    //* No Corellation With Animation Speed Only Game Mechanics
+    //* Only Used For Game Mechanics, not used for Animation
+    //* Timing.
     Uint64 currentTick = SDL_GetPerformanceCounter();
     double _deltaTime = static_cast<double>
                         (currentTick-lastTick)/
@@ -86,7 +88,7 @@ bool Game::eventhandler(){
     while (SDL_PollEvent(&event)){
         //* Exiting Executable
         if(event.type==SDL_QUIT) return false;
-        //* Handle The Left Mouse Button Actioms:
+        //* Handle The Left Mouse Button Actions:
             //* Player Attacks
             player.handleAtk(event);
     }
@@ -111,11 +113,12 @@ void Game::render(){
 bool Game::run(){
     if(!am.loadAssets(renderer,"assets/assets.json"))
         throw std::runtime_error("Failed To Load assets.json file");
-
+    
+    //* Passed lastTick Into calcSpeed() to get current fps.
     Uint64 lastTick = SDL_GetPerformanceCounter();
 
     while(isRunning){
-        double _deltaTime= calcSpeed(lastTick);
+        double _deltaTime = calcSpeed(lastTick);
         if(!eventhandler()) isRunning=false;
         processInput(_deltaTime);
         render();

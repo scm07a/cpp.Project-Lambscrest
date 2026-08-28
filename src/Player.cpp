@@ -157,7 +157,6 @@ void Player::update(double dt, World& world){
                 anim.rows=PlayerAnimation::deathIndex;
                 break;
 
-
             default:
                 throw std::runtime_error
                 ("Unknown Player State Inside Player::update()");
