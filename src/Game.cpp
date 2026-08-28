@@ -28,12 +28,6 @@ Game::Game():window(nullptr),
             + IMG_GetError());
     }
 
-    if(TTF_Init()!=0){
-        throw std::runtime_error(
-            std::string("SDL TTF Initialization Error:")
-            +TTF_GetError());
-    }
-
     window=SDL_CreateWindow("Project Lambscrest",
                             SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED,
@@ -70,7 +64,6 @@ Game::Game():window(nullptr),
 Game::~Game(){
     tm.clear();
     IMG_Quit();
-    TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -85,15 +78,17 @@ double Game::calcSpeed(Uint64& lastTick){
                         SDL_GetPerformanceFrequency());
     lastTick=currentTick;
     return _deltaTime;
-    
 }
 
 bool Game::eventhandler(){
-    //* Handles All Type Off Events (Exiting The Game)
+    //* Handles All Type Of Events
     SDL_Event event;
     while (SDL_PollEvent(&event)){
+        //* Exiting Executable
         if(event.type==SDL_QUIT) return false;
-        player.handleAtk(event);
+        //* Handle The Left Mouse Button Actioms:
+            //* Player Attacks
+            player.handleAtk(event);
     }
     return true;
 }   
@@ -101,7 +96,7 @@ bool Game::eventhandler(){
 void Game::processInput(double dt){
     const Uint8* keyboardState = 
         SDL_GetKeyboardState(nullptr);
-    player.handleInput(keyboardState);
+    player.keyboardInput(keyboardState);
     player.update(dt,world);
 }
 

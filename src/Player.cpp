@@ -20,7 +20,7 @@ Player::Player(): x(100.f),y(100.f),
     srcrect.y= anim.rows * _FRAMESIZE;
 }
 
-void Player::handleInput(const Uint8* keyboardState){
+void Player::keyboardInput(const Uint8* keyboardState){
     if (isAtk()) return;
     moveX=0.f;
     moveY=0.f;
@@ -92,7 +92,7 @@ void Player::update(double dt, World& world){
         dstrect.y=static_cast<int>(y);
     }
     animtimer+=dt;
-    if(animtimer>_FRAMETIME){
+    while(animtimer>_FRAMETIME){
         anim.frames=PlayerAnimation::walkFrames;
         switch(state){
             case PlayerState::IdleNorth:
