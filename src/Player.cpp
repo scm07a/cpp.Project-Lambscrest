@@ -191,17 +191,6 @@ void Player::render(SDL_Renderer* renderer,
     SDL_RenderCopyEx(renderer,textureKey,&srcrect,&dstrect
                     ,0.0,nullptr,flip);
 }
-const SDL_Rect& Player::getdstRect() const{
-    return dstrect;
-}
-
-int Player::getdstRect_X()const{
-    return dstrect.x;
-}
-
-int Player::getdstRect_Y()const{
-    return dstrect.y;
-}
 
 void Player::handleAtk(SDL_Event& event){
     if (event.type!=SDL_MOUSEBUTTONDOWN) return; 

@@ -78,9 +78,6 @@ class Player{
         void update(double dt,World& world);
         void render(SDL_Renderer* renderer,
                     TextureManager& tm);
-        const SDL_Rect& getdstRect() const;
-        int getdstRect_X() const;
-        int getdstRect_Y() const;
         void handleAtk(SDL_Event& event);
         bool isAtk()const;
         bool getHitBox() const;
