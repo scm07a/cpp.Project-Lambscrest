@@ -1,44 +1,40 @@
 # Project Lambscrest
 
-> A top-down 2D pixel-art action-adventure game built from scratch in modern C++ using SDL2.
+> A top-down 2D pixel-art action-adventure game prototype built from scratch in modern C++ using SDL2.
+
+> **🛑 Project Status: Deprecated — Development Discontinued**
 
 ## About
 
-Project Lambscrest is a long-term game development project focused on building a complete game while strengthening my understanding of modern C++, software engineering, game architecture, and real-time rendering.
+Project Lambscrest was a personal game-development project created to strengthen my understanding of modern C++, SDL2, game architecture, real-time rendering, and software engineering.
 
-Rather than relying on an existing game engine, this project uses **SDL2** to build core game systems from the ground up. Every major system—from rendering and animation to resource management and world generation—is implemented incrementally as both a learning experience and the foundation for the final game.
+Rather than relying on an existing game engine, the project was built from the ground up using SDL2. Core systems such as the game loop, player movement, animation, collision detection, texture management, and world rendering were implemented incrementally as part of the learning process.
+
+Development of Lambscrest has now been **discontinued**. The project is being kept as a record of my progress and the systems I built while learning C++ game development.
+
+I am moving on to other game-development technologies and projects that better fit my current goals.
 
 ---
 
-## Current Features
+## Implemented Features
 
-- SDL2 window creation
+- SDL2 initialization
 - Hardware-accelerated rendering
 - Frame-independent movement using Delta Time
 - Object-oriented game architecture
-- Separate input, update, and rendering systems
-- Texture management system
+- Input handling
+- Player movement
+- Texture management
+- Asset management
 - Animated player sprite system
 - Directional idle and walking animations
 - Animation state machine using `enum class`
 - Sprite flipping for left-facing animations
 - Tile-based world rendering
-- CMake + Ninja build system
 - Collision detection
 - JSON-based asset loading
-
----
-
-## Planned Features
-
-- Camera system
-- World generation
-- Inventory system
-- Combat mechanics
-- Enemy AI
-- NPC interactions
-- Audio system
-- Save & Load functionality
+- CMake + Ninja build system
+- Basic enemy/slime implementation
 
 ---
 
@@ -57,139 +53,66 @@ Rather than relying on an existing game engine, this project uses **SDL2** to bu
 
 ---
 
-## Project Structure
+## What I Learned
 
-```text
-Project-Lambscrest/
-│
-├── assets/
-│   ├── audio/
-│   ├── fonts/
-│   └── textures/
-│   └── assets.json
-│
-├── build/
-│
-├── include/
-│   ├── Game.h
-│   ├── Collision.h
-│   ├── Constants.h
-│   ├── Player.h
-│   ├── TextureManager.h
-│   ├── AssetManager.h
-│   └── World.h
-│
-├── src/
-│   ├── main.cpp
-│   ├── Collision.cpp
-│   ├── Game.cpp
-│   ├── Player.cpp
-│   ├── TextureManager.cpp
-│   ├── AssetManager.cpp
-│   └── World.cpp
-│
-├── .gitignore
-├── CMakeLists.txt
-└── README.md
-```
-
----
-
-## Requirements
-
-- CMake
-- Ninja
-- GCC (MSYS2 UCRT64)
-- SDL2
-- SDL2_image
-- SDL2_ttf
-- SDL2_mixer
-
----
-
-## Building
-
-### Configure
-
-```bash
-cmake -B build -G Ninja
-```
-
-### Build
-
-```bash
-cmake --build build
-```
-
-### Run
-
-Run the generated executable from the `build` directory.
-
----
-
-## Learning Goals
-
-Project Lambscrest serves as a practical way to improve my understanding of:
+Lambscrest was primarily a learning project. Through its development, I gained practical experience with:
 
 - Modern C++
 - Object-Oriented Programming
-- Game Architecture
+- Game loops
+- Delta time
 - SDL2
-- Real-time Rendering
-- Delta Time
-- Resource Management
-- Animation Systems
-- State Machines
-- Tile-Based Rendering
-- Software Engineering Principles
-- Clean Code Practices
-- Game Development Best Practices
+- Real-time rendering
+- Sprite animation
+- Animation state machines
+- Enumerations and state management
+- Collision detection
+- Resource and texture management
+- JSON-based asset loading
+- Tile-based rendering
+- CMake
+- Ninja
+- Git and GitHub
+- Structuring a multi-file C++ project
+- Game-development architecture
 
 ---
 
-## Roadmap
+## Project Milestones
 
 - [x] SDL2 initialization
 - [x] Window creation
 - [x] Hardware-accelerated renderer
-- [x] Delta time implementation
 - [x] Game loop
+- [x] Delta time implementation
 - [x] Player movement
 - [x] Input handling
 - [x] Texture manager
+- [x] Asset manager
 - [x] Sprite rendering
-- [x] Animation system
+- [x] Player animation system
 - [x] Directional player animations
+- [x] Animation state machine
 - [x] Tile-based world rendering
 - [x] Collision detection
-- [ ] Camera system
-- [ ] Text/UI rendering
-- [ ] Tutorial prompts
 - [x] JSON asset loading
-- [ ] Tile map loading
-- [ ] Inventory system
-- [ ] Combat mechanics
-- [ ] Enemy AI
-- [ ] NPC interactions
-- [ ] Audio system
-- [ ] Save & Load functionality
-
----
-
-## Screenshots
-
-> Screenshots and gameplay GIFs will be added as development progresses.
+- [x] Basic enemy implementation
+- [x] CMake + Ninja build system
 
 ---
 
 ## Project Status
 
-🚧 **Active Development**
+**Deprecated — Development Discontinued**
 
-Project Lambscrest is under active development. New systems are added incrementally, with an emphasis on writing clean, maintainable code while learning the fundamentals of engine and game development.
+Lambscrest is no longer under active development.
+
+The project has reached the point where I have learned what I originally set out to learn from building a game from scratch with C++ and SDL2. Rather than continuing to expand the existing prototype, I have decided to move forward with new projects and explore other technologies and approaches to game development.
+
+The repository will remain available as an archive of the project's development and as a reference for what I learned while building it.
 
 ---
 
 ## License
 
-A license will be selected before the first public release.
+No license has been selected for this project. The repository is preserved for educational and archival purposes.

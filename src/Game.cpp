@@ -11,8 +11,7 @@
 Game::Game():window(nullptr),
             renderer(nullptr),
             isRunning(true),
-            am(tm)
-{
+            am(tm){
     if(SDL_Init(SDL_INIT_VIDEO)!=0){
         throw std::runtime_error(
             std::string("SDL App Initialization Error:") 
