@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include "World.h"
 #include "Collision.h"
-#include "TextureManager.h"
+#include "Asset Headers/TextureManager.h"
 #include "Direction.h"
 
 //* Player Frame Indices and Sizes
@@ -11,6 +11,7 @@ constexpr double _FRAMETIME = 0.2;
 constexpr int playerWidth=150;
 constexpr int playerHeight=90;
 
+//*Player Animation Frames 
 namespace PlayerAnimation{
 constexpr int idleSouthIndex=0;
 constexpr int idleSidesIndex=1;
@@ -27,6 +28,7 @@ constexpr int attackFrames = 4;
 constexpr int deathFrames=3;
 };
 
+//* Playr Direction States
 enum class PlayerState{
     IdleNorth,
     IdleSouth,
@@ -43,6 +45,7 @@ enum class PlayerState{
     DeathEast,
     DeathWest
 };
+
 
 struct Animation{
     int rows,frames;
@@ -74,11 +77,14 @@ class Player{
         Collision coll;
     public:
         Player();
+        //* KeyBoard Input
         void keyboardInput(const Uint8* keyboardState);
+        //* Rendering And Updating Player State
         void update(double dt,World& world);
         void render(SDL_Renderer* renderer,
                     TextureManager& tm);
-        void handleAtk(SDL_Event& event);
-        bool isAtk()const;
-        bool getHitBox() const;
+        //* Mouse Input
+            //* Attack Handling
+            void handleAtk(SDL_Event& event);
+            bool isAtk()const;
 };

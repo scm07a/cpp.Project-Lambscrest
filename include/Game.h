@@ -3,9 +3,9 @@
 #include "World.h"
 #include "Player.h"
 #include "Slime.h"
-#include "TextureManager.h"
+#include "Asset Headers/TextureManager.h"
 #include "Collision.h"
-#include "AssetManager.h"
+#include "Asset Headers/AssetManager.h"
 
 class Game{
     private:

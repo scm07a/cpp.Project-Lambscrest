@@ -2,7 +2,7 @@
 #include "World.h"
 #include "Collision.h"
 #include "Constants.h"
-#include "TextureManager.h"
+#include "Asset Headers/TextureManager.h"
 
 World::World(){
     tile.x=0;
@@ -28,11 +28,4 @@ void World::render(SDL_Renderer* renderer,
                             nullptr,&tile);
         }
     }
-}
-
-bool World::checkCollison(const SDL_Rect& rect) const{
-    return SDL_HasIntersection(&lBorder,&rect)||
-            SDL_HasIntersection(&rBorder,&rect)||
-            SDL_HasIntersection(&upBorder,&rect)||
-            SDL_HasIntersection(&downBorder,&rect);
 }

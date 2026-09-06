@@ -4,7 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "Game.h"
-#include "TextureManager.h"
+#include "Asset Headers/TextureManager.h"
 #include "Collision.h"
 #include "Constants.h"
 

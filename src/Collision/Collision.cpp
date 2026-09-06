@@ -1,5 +1,5 @@
-#include "Collision.h"
 #include <SDL2/SDL.h>
+#include "Collision.h"
 
 Collision::Collision(){}
 SDL_Rect Collision::spriteCollBox(const SDL_Rect& spriteRect,
